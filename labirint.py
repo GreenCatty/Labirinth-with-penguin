@@ -5,14 +5,16 @@ import logging
 import os
 import traceback
 
+
 def edit(file, w, h, color):
     image = pygame.image.load(file).convert()
-    if color == None:
+    if color is None:
         image.set_colorkey(image.get_at((0, 0)))
     else:
         image.set_colorkey(color)
     image = pygame.transform.scale(image, (w, h))
     return image
+
 
 class Room(pygame.sprite.Sprite):
     def __init__(self, file):
@@ -93,6 +95,7 @@ class Hero(pygame.sprite.Sprite):
             self.rect.x -= dx[j]
             self.rect.y -= dy[j]
 
+
 class Door(pygame.sprite.Sprite):
     def __init__(self, file, index, x, y, w, h, rotate):
         super().__init__(mas[index])
@@ -167,7 +170,6 @@ class Final_Door(Door):
         self.image = edit(self.file, self.w, self.h, (255, 255, 255))
         
 
-
 class Form_Key(Key):
     def use(self):
         global FINAL
@@ -206,7 +208,6 @@ class Portal(pygame.sprite.Sprite):
             if self.active == 0:
                 self.activate()
             else:
-                
                 self.count()
         else:
             if self.active == 1:
@@ -256,32 +257,15 @@ class Button(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        
-def format_exception(e):
-    exception_list = traceback.format_stack()
-    exception_list = exception_list[:-2]
-    exception_list.extend(traceback.format_tb(sys.exc_info()[2]))
-    exception_list.extend(traceback.format_exception_only(sys.exc_info()[0], sys.exc_info()[1]))
 
-    exception_str = "Traceback (most recent call last):\n"
-    exception_str += "".join(exception_list)
-    # Removing the last \n
-    exception_str = exception_str[:-1]
-
-    return exception_str
 
 if __name__ == '__main__':
-     try:
-        logging.basicConfig(filename="labirint_log.log", level=logging.INFO)
         pygame.mixer.pre_init(44100, 16, 1, 512)
         pygame.init()
-    
-        filepath = os.path.abspath("c:\\Users\\aleks\\OneDrive\\Desktop\\project_labirint\\lab_music.mp3")
-        pygame.mixer.music.load(filepath)
+        pygame.mixer.music.load('lab_music.mp3')
         pygame.mixer.music.set_volume(0.2)
         pygame.mixer.music.play(-1)
-
-       
+        
         to_button = pygame.mixer.Sound('касание_кнопки.wav')
         press_button = pygame.mixer.Sound('нажатие_на_кнопку.wav')
         catch_key = pygame.mixer.Sound('взятие_ключа.wav')
@@ -612,11 +596,3 @@ if __name__ == '__main__':
                     clock.tick(fps)
         logging.info("Quit5")
         pygame.quit()
-
-     except Exception as e:        
-        logging.info("Error occured!")
-        logging.info("".join(traceback.format_exception(sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2])))
-        logging.info("Error trace:")
-        logging.info(format_exception(e))
-        pygame.quit()
-           
