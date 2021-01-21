@@ -1,0 +1,23 @@
+INFO:root:Quit
+INFO:root:Quit5
+INFO:root:Quit2
+INFO:root:Quit3
+INFO:root:Error occured!
+INFO:root:Traceback (most recent call last):
+  File "C:\Users\aleks\OneDrive\Desktop\project_labirint\labirint.py", line 547, in <module>
+    screen.fill((255, 255, 255))
+pygame.error: display Surface quit
+
+INFO:root:Error trace:
+INFO:root:Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python38-32\lib\idlelib\run.py", line 155, in main
+    ret = method(*args, **kwargs)
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python38-32\lib\idlelib\run.py", line 548, in runcode
+    exec(code, self.locals)
+  File "C:\Users\aleks\OneDrive\Desktop\project_labirint\labirint.py", line 547, in <module>
+    screen.fill((255, 255, 255))
+pygame.error: display Surface quit
+INFO:root:Quit2
+INFO:root:Quit
+INFO:root:Quit5
